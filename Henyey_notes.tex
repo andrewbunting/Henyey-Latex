@@ -168,6 +168,55 @@ This gives us the required recurrence relations as
 
 
 
+\subsection{Method III}
+
+Use equation \ref{eq:EFH} to substitute for $\vec{u}_{k}$ in equation \ref{eq:ACD} and \ref{eq:relation}.
+
+\begin{equation} \label{eq:IIIa}
+\vec{u}_{k}  = \underline{E}^{-1}  \left( \vec{N} - \underline{F}_{k}  \vec{v}_{k}  - \underline{H} \vec{v}_{k+1} \right),
+\end{equation}
+\\
+which leads to
+
+\begin{equation} \label{eq:IIIb}
+\underline{A} \, \underline{E}^{-1} \left(  \vec{N} - \underline{F} \vec{v}_{k} - \underline{H} \vec{v}_{k+1}  \right)  +  \underline{C} \vec{u}_{k+1}  +  \underline{D} \vec{v}_{k+1}  =  \vec{M}   \longrightarrow   - \underline{A} \, \underline{E}^{-1} \underline{F} \vec{v}_{k}  +  \underline{C} \vec{u}_{k+1}  +  \left( \underline{D} - \underline{A} \, \underline{E}^{-1} \underline{H} \right) \vec{v}_{k+1}  =  \vec{M}  -  \underline{A} \, \underline{E}^{-1} \vec{N}
+\end{equation}
+
+\begin{equation} \label{eq:IIIc}
+\underline{E}^{-1} \left(  \vec{N} - \underline{F} \vec{v}_{k} - \underline{H} \vec{v}_{k+1}  \right)  +  \underline{\alpha}_{k} \vec{v}_{k}  +  \vec{\gamma}_{k}  =  0     \longrightarrow  \left(   \alpha_{k}  -  \underline{E}^{-1} \, \underline{F}  \right) \vec{v}_{k}  -  \underline{E}^{-1} \, \underline{H} \vec{v}_{k+1}  +  \vec{\gamma}_{k}  +  \underline{E}^{-1} \vec{N}  =  0
+\end{equation} 
+\\
+
+We then isolate $\vec{v}_{k}$, giving
+
+\begin{equation} \label{eq:IIId}
+-  \vec{v}_{k}  +  \underline{F}^{-1} \underline{E} \, \underline{A}^{-1} \underline{C} \vec{u}_{k+1}  +  \underline{F}^{-1} \underline{E} \, \underline{A}^{-1} \left( \underline{D} - \underline{A} \, \underline{E}^{-1} \underline{H} \right) \vec{v}_{k+1}  =  \underline{F}^{-1} \underline{E} \, \underline{A}^{-1}  \left(\vec{M}  -  \underline{A} \, \underline{E}^{-1} \vec{N}  \right)
+\end{equation}
+
+\begin{equation} \label{eq:IIIe}
+\vec{v}_{k}  -  \left(   \alpha_{k}  -  \underline{E}^{-1} \, \underline{F}  \right)^{-1} \underline{E}^{-1} \, \underline{H} \vec{v}_{k+1}  +  \left(   \alpha_{k}  -  \underline{E}^{-1} \, \underline{F}  \right)^{-1}  \left(\vec{\gamma}_{k}  +  \underline{E}^{-1} \vec{N} \right) =  0
+\end{equation} 
+\\
+
+Adding these equations together eliminates $\vec{v}_{k}$, giving
+
+GOT UP TO HERE
+
+
+This gives us the required recurrence relations as
+
+\begin{equation} \label{eq:IIIalpha}
+\underline{\alpha}_{k+1}  =  \underline{C}^{-1} \left(  \underline{D}  + \underline{A} \left( 1 - \underline{\alpha}_{k} \underline{F}^{-1} \underline{E}  \right)^{-1} \underline{\alpha}_{k} \underline{F}^{-1} \underline{H}    \right) ,
+\end{equation} 
+
+\begin{equation} \label{eq:IIIgamma}
+\vec{\gamma}_{k+1}  =  -   \underline{C}^{-1} \left(  \vec{M}  +  \underline{A} \left( 1 - \underline{\alpha}_{k} \underline{F}^{-1} \underline{E}  \right)^{-1} \left(  \underline{\alpha}_{k} \underline{F}^{-1} \vec{N}  +  \vec{\gamma}_{k}   \right)  \right) .
+\end{equation} 
+\\
+
+
+
+
 
 
 
