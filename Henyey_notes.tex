@@ -1,6 +1,6 @@
 \documentclass[11pt]{amsart}
-\usepackage{geometry}           % See geometry.pdf to learn the layout options. There are lots.
-\geometry{letterpaper} % ... or a4paper or a5paper  or ... 
+\usepackage[margin=2.5cm]{geometry}           % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper} % ... or a4paper or a5paper  or letterpaper ... 
 %\geometry{landscape}                % Activate for for rotated page geometry
 %\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an
 %indent
@@ -71,6 +71,10 @@ There are many different ways to formulate the recurrence relation, some of whic
 
 For ease of reading, the subscripts on the coefficients in equations \ref{eq:ACD} and \ref{eq:EFH} will be dropped, but the $k,k+1$ subscripts are implied, and any other subscripts will be explicitly stated.
 
+Also, the ordering of the methods is named to fit in with the order in which I  previously derived them, and therefore correlates with the naming of my different codes.  Unfortunately, this does mean that the primary method used is actually method II, rather than method I.
+
+
+
 \subsection{Method I}
 
 Use equation \ref{eq:relation} to substitute for $\vec{u}_{k}$ in equations \ref{eq:ACD} and \ref{eq:EFH}.
@@ -86,17 +90,74 @@ which leads to
 \end{equation} 
 
 \begin{equation} \label{eq:Ic}
-- \underline{E} \left(  \underline{\alpha}_{k}  \vec{v}_{k}  + \vec{\gamma}_{k} \right) + \underline{F} \vec{v}_{k} + \underline{H} \vec{v}_{k+1} = \vec{N}   \longrightarrow   \left( \underline{F} - \underline{E} \, \underline{\alpha}_{k} \right) \vec{v}_{k} + \underline{H} \vec{v}_{k+1} = \vec{N} + \underline{E} \vec{\gamma}_{k.}
+- \underline{E} \left(  \underline{\alpha}_{k}  \vec{v}_{k}  + \vec{\gamma}_{k} \right) + \underline{F} \vec{v}_{k} + \underline{H} \vec{v}_{k+1} = \vec{N}   \longrightarrow   \left( \underline{F} - \underline{E} \, \underline{\alpha}_{k} \right) \vec{v}_{k} + \underline{H} \vec{v}_{k+1} = \vec{N} + \underline{E} \vec{\gamma}_{k} .
 \end{equation} 
 \\
 We then isolate $-\vec{v}_{k}$ in equation \ref{eq:Ib} and $\vec{v}_{k}$ in equation \ref{eq:Ic}, giving
 
 \begin{equation} \label{eq:Id}
-- \underline{A} \left(  \underline{\alpha}_{k}  \vec{v}_{k}  + \vec{\gamma}_{k} \right) + \underline{C} \vec{u}_{k+1} + \underline{D} \vec{v}_{k+1} = \vec{M}      \longrightarrow       - \underline{A} \, \underline{\alpha}_{k}  \vec{v}_{k}  + \underline{C} \vec{u}_{k+1} + \underline{D} \vec{v}_{k+1} = \vec{M}  + \underline{A} \vec{\gamma}_{k},
+-  \vec{v}_{k}  + \left( \underline{A} \, \underline{\alpha}_{k} \right)^{-1}  \underline{C} \vec{u}_{k+1} + \left( \underline{A} \, \underline{\alpha}_{k} \right)^{-1}  \underline{D} \vec{v}_{k+1} = \left( \underline{A} \, \underline{\alpha}_{k} \right)^{-1} \left( \vec{M}  + \underline{A} \vec{\gamma}_{k} \right) ,
 \end{equation} 
 
 \begin{equation} \label{eq:Ie}
-- \underline{E} \left(  \underline{\alpha}_{k}  \vec{v}_{k}  + \vec{\gamma}_{k} \right) + \underline{F} \vec{v}_{k} + \underline{H} \vec{v}_{k+1} = \vec{N}   \longrightarrow   \left( \underline{F} - \underline{E} \, \underline{\alpha}_{k} \right) \vec{v}_{k} + \underline{H} \vec{v}_{k+1} = \vec{N} + \underline{E} \vec{\gamma}_{k.}
+ \vec{v}_{k} + \left( \underline{F} - \underline{E} \, \underline{\alpha}_{k} \right)^{-1} \underline{H} \vec{v}_{k+1} =  \left( \underline{F} - \underline{E} \, \underline{\alpha}_{k} \right)^{-1} \left(  \vec{N} + \underline{E} \vec{\gamma}_{k} \right) .
+\end{equation} 
+\\
+
+
+By adding these two equations together, we cancel out $\vec{v}_{k}$, which means that we can then compare coefficients.
+
+\begin{equation} \label{eq:If}
+ \vec{u}_{k+1} + \underline{C}^{-1} \left( \underline{D}  +  \underline{A} \, \underline{\alpha}_{k} \left( \underline{F} - \underline{E} \, \underline{\alpha}_{k} \right)^{-1}  \underline{H}  \right) \vec{v}_{k+1}   -  \underline{C}^{-1}  \left( \vec{M}   + \underline{A} \, \vec{\gamma}_{k}  +  \underline{A} \, \underline{\alpha}_{k} \left( \underline{F} - \underline{E} \, \underline{\alpha}_{k} \right)^{-1} \left(  \vec{N} + \underline{E} \vec{\gamma}_{k} \right)   \right)  =  0  .
+\end{equation} 
+\\
+
+This gives us the required recurrence relations as
+
+\begin{equation} \label{eq:Ialpha}
+\underline{\alpha}_{k+1}  =  \underline{C}^{-1} \left( \underline{D}  +  \underline{A} \, \underline{\alpha}_{k} \left( \underline{F} - \underline{E} \, \underline{\alpha}_{k} \right)^{-1}  \underline{H}  \right) ,
+\end{equation} 
+
+\begin{equation} \label{eq:Igamma}
+\vec{\gamma}_{k+1}  =  -  \underline{C}^{-1}  \left( \vec{M}   + \underline{A} \, \vec{\gamma}_{k}  +  \underline{A} \, \underline{\alpha}_{k} \left( \underline{F} - \underline{E} \, \underline{\alpha}_{k} \right)^{-1} \left(  \vec{N} + \underline{E} \vec{\gamma}_{k} \right)   \right) .
+\end{equation} 
+\\
+
+
+
+
+
+
+\subsection{Method II}
+
+Use equation \ref{eq:EFH} to substitute for $\vec{v}_{k}$ in equation \ref{eq:relation}.
+
+\begin{equation} \label{eq:IIa}
+\vec{v}_{k}  = \underline{F}^{-1}  \left( \vec{N} - \underline{E}_{k}  \vec{u}_{k}  - \underline{H} \vec{v}_{k+1} \right),
+\end{equation}
+\\
+which leads to
+
+\begin{equation} \label{eq:IIb}
+ \underline{u}_{k}  + \underline{\alpha}_{k} \, \underline{F}^{-1} \left( \vec{N}  - \underline{E} \vec{u}_{k} - \underline{H} \vec{v}_{k+1}  \right)  +  \vec{\gamma}_{k}  =  0      \longrightarrow       \vec{u}_{k}  =  \left(  1 - \underline{\alpha}_{k} \, \underline{F}^{-1} \underline{E}  \right)^{-1}     \left(   \underline{\alpha}_{k} \, \underline{F}^{-1}  \left(  \underline{H}  \vec{v}_{k+1} - \vec{N} \right) - \vec{\gamma}_{k}  \right)
+\end{equation} 
+\\
+which can be used to eliminate $\vec{u}_{k}$ in equation \ref{eq:ACD}, as
+
+\begin{equation} \label{eq:IIc}
+\vec{u}_{k+1}  + \underline{C}^{-1} \left(  \underline{D}  + \underline{A} \left( 1 - \underline{\alpha}_{k} \underline{F}^{-1} \underline{E}  \right)^{-1} \underline{\alpha}_{k} \underline{F}^{-1} \underline{H}    \right) \vec{v}_{k+1}   -   \underline{C}^{-1} \left(  \vec{M}  +  \underline{A} \left( 1 - \underline{\alpha}_{k} \underline{F}^{-1} \underline{E}  \right)^{-1} \left(  \underline{\alpha}_{k} \underline{F}^{-1} \vec{N}  +  \vec{\gamma}_{k}   \right)  \right)   =  0
+\end{equation} 
+\\
+
+
+This gives us the required recurrence relations as
+
+\begin{equation} \label{eq:IIalpha}
+\underline{\alpha}_{k+1}  =  \underline{C}^{-1} \left(  \underline{D}  + \underline{A} \left( 1 - \underline{\alpha}_{k} \underline{F}^{-1} \underline{E}  \right)^{-1} \underline{\alpha}_{k} \underline{F}^{-1} \underline{H}    \right) ,
+\end{equation} 
+
+\begin{equation} \label{eq:IIgamma}
+\vec{\gamma}_{k+1}  =  -   \underline{C}^{-1} \left(  \vec{M}  +  \underline{A} \left( 1 - \underline{\alpha}_{k} \underline{F}^{-1} \underline{E}  \right)^{-1} \left(  \underline{\alpha}_{k} \underline{F}^{-1} \vec{N}  +  \vec{\gamma}_{k}   \right)  \right) .
 \end{equation} 
 \\
 
