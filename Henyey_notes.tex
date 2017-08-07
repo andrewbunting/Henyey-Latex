@@ -198,19 +198,96 @@ We then isolate $\vec{v}_{k}$, giving
 \end{equation} 
 \\
 
-Adding these equations together eliminates $\vec{v}_{k}$, giving
+Adding these equations together eliminates $\vec{v}_{k}$, giving, with a slight rearrangement:
 
-GOT UP TO HERE
+\begin{multline} \label{eq:IIIf}
+ \underline{F}^{-1} \underline{E} \, \underline{A}^{-1} \underline{C} \vec{u}_{k+1}  + \left(  \underline{F}^{-1} \underline{E} \, \underline{A}^{-1} \left( \underline{D} - \underline{A} \, \underline{E}^{-1} \underline{H} \right)    -  \left(   \underline{\alpha}_{k}  -  \underline{E}^{-1} \, \underline{F}  \right)^{-1} \underline{E}^{-1} \, \underline{H}    \right) \vec{v}_{k+1}  \\
+ +   \left(   \underline{\alpha}_{k}  -  \underline{E}^{-1} \, \underline{F}  \right)^{-1}  \left(\vec{\gamma}_{k}  +  \underline{E}^{-1} \vec{N} \right)   -  \underline{F}^{-1} \underline{E} \, \underline{A}^{-1}  \left(\vec{M}  -  \underline{A} \, \underline{E}^{-1} \vec{N}  \right)  =  0
+\end{multline}
+\\
+
+Multiplying from the left by $\underline{C}^{-1} \underline{A} \, \underline{E}^{-1} \underline{F}$ gives
+
+\begin{multline} \label{eq:IIIg}
+\vec{u}_{k+1}  + \underline{C}^{-1}  \left(  \underline{D}   -  \underline{A} \, \underline{E}^{-1}  \left(  1 + \left( \underline{E} \, \underline{\alpha}_{k} \underline{F}^{-1}  - 1 \right)^{-1} \right) \underline{H}    \right) \vec{v}_{k+1}  \\
+ +   \underline{C}^{-1}  \left(  \underline{A} \, \underline{E}^{-1} \underline{F} \left(   \underline{\alpha}_{k}  -  \underline{E}^{-1} \, \underline{F}  \right)^{-1}  \left(\vec{\gamma}_{k}  +  \underline{E}^{-1} \vec{N} \right)   -  \vec{M}  +  \underline{A} \, \underline{E}^{-1} \vec{N}  \right)  =  0
+\end{multline}
+\\
 
 
 This gives us the required recurrence relations as
 
 \begin{equation} \label{eq:IIIalpha}
-\underline{\alpha}_{k+1}  =  \underline{C}^{-1} \left(  \underline{D}  + \underline{A} \left( 1 - \underline{\alpha}_{k} \underline{F}^{-1} \underline{E}  \right)^{-1} \underline{\alpha}_{k} \underline{F}^{-1} \underline{H}    \right) ,
+\underline{\alpha}_{k+1}  =  \underline{C}^{-1}  \left(  \underline{D}   -  \underline{A} \, \underline{E}^{-1}  \left(  1 + \left( \underline{E} \, \underline{\alpha}_{k} \underline{F}^{-1}  - 1 \right)^{-1} \right) \underline{H}    \right) ,
 \end{equation} 
 
 \begin{equation} \label{eq:IIIgamma}
-\vec{\gamma}_{k+1}  =  -   \underline{C}^{-1} \left(  \vec{M}  +  \underline{A} \left( 1 - \underline{\alpha}_{k} \underline{F}^{-1} \underline{E}  \right)^{-1} \left(  \underline{\alpha}_{k} \underline{F}^{-1} \vec{N}  +  \vec{\gamma}_{k}   \right)  \right) .
+\vec{\gamma}_{k+1}  =   \underline{C}^{-1}  \left(  \underline{A} \, \underline{E}^{-1} \underline{F} \left(   \underline{\alpha}_{k}  -  \underline{E}^{-1} \, \underline{F}  \right)^{-1}  \left(\vec{\gamma}_{k}  +  \underline{E}^{-1} \vec{N} \right)   -  \vec{M}  +  \underline{A} \, \underline{E}^{-1} \vec{N}  \right)  =  0.
+\end{equation} 
+\\
+
+
+
+
+
+
+
+
+
+\subsection{Method IV}
+
+Use equation \ref{eq:ACD} to substitute for $\vec{u}_{k}$ in equation \ref{eq:EFH} and \ref{eq:relation}.
+
+\begin{equation} \label{eq:IVa}
+\vec{u}_{k}  = \underline{A}^{-1}  \left( \vec{M} - \underline{C}_{k}  \vec{u}_{k+1}  - \underline{D} \vec{v}_{k+1} \right),
+\end{equation}
+\\
+which leads to
+
+\begin{equation} \label{eq:IVb}
+\underline{E} \, \underline{A}^{-1} \left(  \vec{M} - \underline{C} \vec{u}_{k+1} - \underline{D} \vec{v}_{k+1}  \right)  +  \underline{F} \vec{v}_{k}  +  \underline{H} \vec{v}_{k+1}  =  \vec{N}   \longrightarrow    \underline{F} \vec{v}_{k}  -  \underline{E} \, \underline{A}^{-1} \underline{C} \vec{u}_{k+1}  +  \left( \underline{H} - \underline{E} \, \underline{A}^{-1} \underline{D} \right) \vec{v}_{k+1}  =  \vec{N}  -  \underline{E} \, \underline{A}^{-1} \vec{M}
+\end{equation}
+
+\begin{equation} \label{eq:IVc}
+\underline{A}^{-1} \left(  \vec{M} - \underline{C} \vec{u}_{k+1} - \underline{D} \vec{v}_{k+1}  \right)  +  \underline{\alpha}_{k} \vec{v}_{k}  +  \vec{\gamma}_{k}  =  0     \longrightarrow      - \alpha_{k} \vec{v}_{k}  +  \underline{A}^{-1} \, \underline{D} \vec{v}_{k+1}  +  \underline{A}^{-1} \underline{C} \vec{u}_{k+1}  =  - \vec{\gamma}_{k}  - \underline{A}^{-1} \vec{M}
+\end{equation} 
+\\
+
+We then isolate $\underline{\alpha}_{k} \vec{v}_{k}$ (as we want to avoid using $\underline{\alpha}_{k}$, as, for $k=0$ it will be 0 which doesn't invert well) in equation \ref{eq:IVb} giving
+
+
+\begin{equation} \label{eq:IVd}
+\underline{\alpha}_{k}  \vec{v}_{k}  -  \underline{\alpha}_{k} \underline{F}^{-1} \underline{E} \, \underline{A}^{-1} \underline{C} \vec{u}_{k+1}  +  \underline{\alpha}_{k} \underline{F}^{-1} \left( \underline{H} - \underline{E} \, \underline{A}^{-1} \underline{D} \right) \vec{v}_{k+1}  =  \underline{\alpha}_{k} \underline{F}^{-1}  \left(\vec{N}  -  \underline{E} \, \underline{A}^{-1} \vec{M}  \right)
+\end{equation}
+
+
+Adding this to equation \ref{eq:IVc} eliminates $\underline{\alpha}_{k} \vec{v}_{k}$, giving, with a slight rearrangement:
+
+GOT UP TO HERE
+
+\begin{multline} \label{eq:IVf}
+ \underline{F}^{-1} \underline{E} \, \underline{A}^{-1} \underline{C} \vec{u}_{k+1}  + \left(  \underline{F}^{-1} \underline{E} \, \underline{A}^{-1} \left( \underline{D} - \underline{A} \, \underline{E}^{-1} \underline{H} \right)    -  \left(   \underline{\alpha}_{k}  -  \underline{E}^{-1} \, \underline{F}  \right)^{-1} \underline{E}^{-1} \, \underline{H}    \right) \vec{v}_{k+1}  \\
+ +   \left(   \underline{\alpha}_{k}  -  \underline{E}^{-1} \, \underline{F}  \right)^{-1}  \left(\vec{\gamma}_{k}  +  \underline{E}^{-1} \vec{N} \right)   -  \underline{F}^{-1} \underline{E} \, \underline{A}^{-1}  \left(\vec{M}  -  \underline{A} \, \underline{E}^{-1} \vec{N}  \right)  =  0
+\end{multline}
+\\
+
+Multiplying from the left by $\underline{C}^{-1} \underline{A} \, \underline{E}^{-1} \underline{F}$ gives
+
+\begin{multline} \label{eq:IVg}
+\vec{u}_{k+1}  + \underline{C}^{-1}  \left(  \underline{D}   -  \underline{A} \, \underline{E}^{-1}  \left(  1 + \left( \underline{E} \, \underline{\alpha}_{k} \underline{F}^{-1}  - 1 \right)^{-1} \right) \underline{H}    \right) \vec{v}_{k+1}  \\
+ +   \underline{C}^{-1}  \left(  \underline{A} \, \underline{E}^{-1} \underline{F} \left(   \underline{\alpha}_{k}  -  \underline{E}^{-1} \, \underline{F}  \right)^{-1}  \left(\vec{\gamma}_{k}  +  \underline{E}^{-1} \vec{N} \right)   -  \vec{M}  +  \underline{A} \, \underline{E}^{-1} \vec{N}  \right)  =  0
+\end{multline}
+\\
+
+
+This gives us the required recurrence relations as
+
+\begin{equation} \label{eq:IValpha}
+\underline{\alpha}_{k+1}  =  \underline{C}^{-1}  \left(  \underline{D}   -  \underline{A} \, \underline{E}^{-1}  \left(  1 + \left( \underline{E} \, \underline{\alpha}_{k} \underline{F}^{-1}  - 1 \right)^{-1} \right) \underline{H}    \right) ,
+\end{equation} 
+
+\begin{equation} \label{eq:IVgamma}
+\vec{\gamma}_{k+1}  =   \underline{C}^{-1}  \left(  \underline{A} \, \underline{E}^{-1} \underline{F} \left(   \underline{\alpha}_{k}  -  \underline{E}^{-1} \, \underline{F}  \right)^{-1}  \left(\vec{\gamma}_{k}  +  \underline{E}^{-1} \vec{N} \right)   -  \vec{M}  +  \underline{A} \, \underline{E}^{-1} \vec{N}  \right)  =  0.
 \end{equation} 
 \\
 
